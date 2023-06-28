@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import "dotenv/config";
-import env from "./utils/validateEnv";
+import env from "./utils/validate";
 import mongoose from "mongoose";
 
 const app = express();

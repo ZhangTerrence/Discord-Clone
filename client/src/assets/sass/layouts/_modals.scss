@@ -1,0 +1,104 @@
+@import "../utilities/colors";
+@import "../utilities/mixins";
+
+#login, #signup {
+  @include absolute-center;
+  @include border;
+  transform: scale(0);
+  background: $discord-gray-300;
+  overflow: hidden;
+  transition: transform 0.175s ease;
+
+  form {
+    @include dimensions(35rem, 45rem);
+    @include flex(column, center, center);
+    position: relative;
+
+    .close-icon {
+      @include dimensions(5rem, 5rem);
+      @include flex(row, center, center);
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: #FFFFFF;
+      cursor: pointer;
+      border-bottom-left-radius: 2rem;
+
+      svg {
+        transform: rotate(45deg);
+        color: #000000;
+      }
+    }
+
+    h2 {
+      margin-bottom: 3rem;
+    }
+
+    button {
+      @include dimensions(85%, 4rem);
+      outline: none;
+      border-radius: 2rem;
+      margin-top: 3rem;  
+      background: #FFFFFF;
+      font-size: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .login-box, .register-box {
+      @include dimensions(85%, 5rem);
+      @include flex(row, center, center);
+      margin-top: 1.5rem;
+    
+      a {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+#signup form {
+  height: 50rem;
+}
+
+#login.active, #signup.active {
+  transform: scale(1);
+}
+
+.input-box {
+  @include dimensions(85%, 5rem);
+  position: relative;
+  border-bottom: 2px solid #FFFFFF;
+  margin-bottom: 2rem;
+
+  span {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 1rem;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+
+  input:focus~label,
+  input:not(:placeholder-shown)~label,
+  input:valid~label, {
+    bottom: 55%;
+  }
+
+  input {
+    @include dimensions(100%, 100%);
+    outline: none;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    color: #FFFFFF;
+  }
+}

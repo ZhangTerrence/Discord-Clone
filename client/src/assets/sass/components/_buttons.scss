@@ -1,0 +1,16 @@
+@import "../utilities/colors";
+@import "../utilities/mixins";
+
+.login, .signup {
+  @include border;
+  background: transparent;
+  padding: 2rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.login:hover, .signup:hover {
+  background: $discord-gray-400;
+}
