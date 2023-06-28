@@ -5,10 +5,14 @@ import "dotenv/config";
 import env from "./utils/validate";
 import mongoose from "mongoose";
 
+import { userRouter } from "./routes/userRoutes";
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/api/users", userRouter);
 
 mongoose.connect(env.MONGO_CONNECTION)
   .then(() => {
