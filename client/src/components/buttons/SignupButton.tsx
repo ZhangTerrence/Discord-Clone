@@ -1,4 +1,4 @@
-function SignupButton() {
+export const SignupButton = () => {
   const open = () => {
     const modal = document.getElementById("signup") as HTMLDialogElement;
     modal.showModal();
@@ -10,6 +10,4 @@ function SignupButton() {
       Signup
     </button>
   );
-}
-
-export default SignupButton;
+};

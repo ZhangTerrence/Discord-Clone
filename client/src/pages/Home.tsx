@@ -1,9 +1,9 @@
 import Logo from "../assets/images/Logo.png";
 
-import LoginButton from "../components/buttons/LoginButton";
-import SignupButton from "../components/buttons/SignupButton";
-import Login from "../components/modals/Login";
-import Signup from "../components/modals/Signup";
+import { LoginButton } from "../components/buttons/LoginButton";
+import { SignupButton } from "../components/buttons/SignupButton";
+import { Login } from "../components/modals/Login";
+import { Signup } from "../components/modals/Signup";
 
 function Home() {
   return (

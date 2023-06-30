@@ -15,7 +15,7 @@ function Channels() {
     };
 
     fetchUsers();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="channels-page">

@@ -1,4 +1,4 @@
-function LoginButton() {
+export const LoginButton = () => {
   const open = () => {
     const modal = document.getElementById("login") as HTMLDialogElement;
     modal.showModal();
@@ -10,6 +10,4 @@ function LoginButton() {
       Login
     </button>
   );
-}
-
-export default LoginButton;
+};

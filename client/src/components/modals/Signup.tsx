@@ -1,7 +1,7 @@
 import { FaPlus, FaEnvelope, FaLock } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 
-function Signup() {
+export const Signup = () => {
   const close = () => {
     const modal = document.getElementById("signup") as HTMLDialogElement;
     modal.classList.remove("active");
@@ -66,6 +66,6 @@ function Signup() {
       </form>
     </dialog>
   );
-}
+};
 
 export default Signup;

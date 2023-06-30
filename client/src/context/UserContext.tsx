@@ -15,7 +15,7 @@ interface ProviderType {
 
 export const UserContext = createContext<ContextType>({ state: {}, dispatch: () => null });
 
-const userReducer = (state: StateType, action: { type: string; payload: any }) => {
+const userReducer = (state: StateType, action: { type: string; payload: StateType }) => {
   switch (action.type) {
     case "GET_USER":
       return {

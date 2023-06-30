@@ -1,7 +1,7 @@
 import { FaPlus, FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+export const Login = () => {
   const navigate = useNavigate();
 
   const close = () => {
@@ -67,6 +67,4 @@ function Login() {
       </form>
     </dialog>
   );
-}
-
-export default Login;
+};
