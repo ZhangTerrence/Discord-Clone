@@ -1,6 +1,9 @@
 import { FaPlus, FaEnvelope, FaLock } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
   const close = () => {
     const modal = document.getElementById("login") as HTMLDialogElement;
     modal.classList.remove("active");
@@ -38,7 +41,13 @@ function Login() {
           <input id="login-password" type="password" placeholder=" " required />
           <label htmlFor="login-password">Password</label>
         </div>
-        <button>Login</button>
+        <button
+          onClick={() => {
+            navigate("/channels");
+          }}
+        >
+          Login
+        </button>
         <div className="register-box">
           <p>
             Don't have an account?

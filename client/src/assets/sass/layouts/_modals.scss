@@ -38,7 +38,7 @@
       @include dimensions(85%, 4rem);
       outline: none;
       border-radius: 2rem;
-      margin-top: 3rem;  
+      margin-top: 1.5rem;  
       background: #FFFFFF;
       font-size: 2rem;
       font-weight: 600;
@@ -66,10 +66,10 @@
 }
 
 .input-box {
-  @include dimensions(85%, 5rem);
+  @include dimensions(85%, 4rem);
   position: relative;
   border-bottom: 2px solid #FFFFFF;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 
   span {
     position: absolute;
