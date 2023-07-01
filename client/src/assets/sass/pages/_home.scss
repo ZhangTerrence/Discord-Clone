@@ -4,7 +4,7 @@
 .home-page {
   @include dimensions(100vw, 100vh);
   @include flex(column, center, center);
-  background-color: $discord-gray-300;
+  background-color: $discord-gray-200;
 
   .home-page-header {
     @include flex(row, flex-start, center);

@@ -9,7 +9,7 @@ function Home() {
   return (
     <div className="home-page">
       <header className="home-page-header">
-        <img src={Logo} alt="discord logo" />
+        <img src={Logo} alt="logo" />
         <h1>Discord Clone</h1>
       </header>
       <div className="home-page-buttons">

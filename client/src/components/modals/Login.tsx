@@ -43,7 +43,7 @@ export const Login = () => {
         </div>
         <button
           onClick={() => {
-            navigate("/channels");
+            navigate("/channels/@me");
           }}
         >
           Login

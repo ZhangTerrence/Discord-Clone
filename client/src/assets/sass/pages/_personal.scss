@@ -1,0 +1,8 @@
+@import "../utilities/colors";
+@import "../utilities/mixins";
+
+.personal-page {
+  @include dimensions(calc(100vw - 5rem), 100vh);
+  position: relative;
+  margin-left: auto;
+}

@@ -1,0 +1,16 @@
+@import "../utilities/colors";
+@import "../utilities/mixins";
+
+.guild-sidebar {
+  @include dimensions(5rem, 100vh);
+  position: absolute;
+  left: 0;
+  background-color: $discord-gray-400;
+}
+
+.personal-sidebar {
+  @include dimensions(15rem, 100vh);
+  position: absolute;
+  left: 0;
+  background-color: $discord-gray-300;
+}

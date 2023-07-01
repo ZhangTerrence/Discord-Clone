@@ -3,6 +3,6 @@
 
 .channels-page {
   @include dimensions(100vw, 100vh);
-  @include flex(column, center, center);
-  background-color: $discord-gray-300;
+  @include flex(row, center, center);
+  background-color: $discord-gray-200;
 }

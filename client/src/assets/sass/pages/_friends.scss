@@ -1,0 +1,7 @@
+@import "../utilities/colors";
+@import "../utilities/mixins";
+
+.friends-page {
+  @include dimensions(calc(100vw - 20rem), 100vh);
+  margin-left: auto;
+}
