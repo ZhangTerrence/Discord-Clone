@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter an email."],
   },
+  profilePicture: {
+    type: String,
+    default: ""
+  },
   biography: {
     type: String,
     default: ""

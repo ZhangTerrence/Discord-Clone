@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Users from "../models/userModel";
 import { Request, Response } from "express";
+import Users from "../models/userModel";
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -33,8 +33,9 @@ export const getUser = async (req: Request, res: Response) => {
 
 export const createUser = async (req: Request, res: Response) => {
   const { email, username, biography } = req.body;
+  const profilePicture = `https://cdn.discordapp.com/embed/avatars/${Math.floor(Math.random() * 4)}.png`;
   try {
-    const user = await Users.create({ email, username, biography });
+    const user = await Users.create({ email, username, profilePicture, biography });
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({error: error});
@@ -135,8 +136,9 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 
   try {
+    const profilePicture = req.file?.path;
     const user = await Users.findByIdAndUpdate({_id: id}, {
-      ...req.body
+      ...req.body, profilePicture
     })
 
     if (!user) {

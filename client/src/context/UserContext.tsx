@@ -6,7 +6,7 @@ interface ContextType {
 }
 
 interface StateType {
-  [key: string]: string | string[];
+  [key: string]: any;
 }
 
 interface ProviderType {

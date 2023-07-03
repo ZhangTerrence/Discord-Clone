@@ -1,5 +1,6 @@
 import express from "express";
 import { getUsers, getUser, createUser, addFriend, deleteUser, removeFriend, updateUser } from "../controllers/userControllers";
+import { upload } from "../server";
 
 export const userRouter = express.Router();
 
@@ -34,4 +35,4 @@ userRouter.delete("/guilds/:id", () => {console.log()})
 userRouter.delete("/messages/:id", () => {console.log()})  
 
 // UPDATE an user 
-userRouter.patch("/:id", updateUser)
+userRouter.patch("/:id", upload.single("profilePicture"), updateUser)
