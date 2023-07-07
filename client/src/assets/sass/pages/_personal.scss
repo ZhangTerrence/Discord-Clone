@@ -5,3 +5,62 @@
   @include dimensions(calc(100vw - 5rem), 100vh);
   display: flex;
 }
+
+.friends-page {
+  @include dimensions(calc(100vw - 20rem), 100vh);
+  display: flex;
+  flex-direction: column;
+  background-color: $discord-gray-200;
+
+  &__statuses {
+    @include dimensions(100%, fit-content);
+    @include flex(row, flex-start, center);
+    padding: 1rem;
+
+    input {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    input:checked + div {
+      background-color: $discord-gray-100;
+    }
+
+    * div {
+      @include dimensions(fit-content, 3rem);
+      @include flex(row, center, center);
+      padding: 0 1rem 0 1rem;
+      font-size: 1.25rem;
+      cursor: pointer;
+    }
+
+  }
+
+  &__search {
+    @include dimensions(100%, fit-content);
+
+    input {
+      @include dimensions(calc(100% - 2rem), 3rem);
+      outline: none;
+      border: none;
+      margin-left: 1rem;
+      background-color: $discord-gray-400;
+      padding: 0.5rem;
+      font-size: 1.25rem;
+      color: #FFFFFF;
+    }
+  }  
+
+  &__divider {
+    margin: 1rem;
+  }
+
+  &__friends {
+    @include dimensions(100%, 100%);
+  }
+}
+
+.direct-messages-page {
+  @include dimensions(calc(100vw - 20rem), 100vh);
+  background-color: $discord-gray-200;
+}

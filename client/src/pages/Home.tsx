@@ -2,8 +2,8 @@ import Logo from "../assets/images/Logo.png";
 
 import { open } from "../utilities/modalHandlers";
 
-import { Login } from "../components/AuthForms/Login";
-import { Signup } from "../components/AuthForms/Signup";
+import { Login } from "../components/AuthModals/Login";
+import { Signup } from "../components/AuthModals/Signup";
 
 function Home() {
   return (

@@ -7,16 +7,18 @@ export const PersonalSidebar = () => {
 
   return (
     <nav className="personal-sidebar">
-      <div className="personal-sidebar__scrollbox">
-        <div className="friends">
+      <label className="personal-sidebar__label personal-sidebar__friends">
+        <input type="radio" name="personal-sidebar" />
+        <div>
           <IoPerson />
-          <div>Friends</div>
+          <h4>Friends</h4>
         </div>
-        <div className="direct-messages">
-          <h4>Direct Messages</h4>
-          <FaPlus />
-        </div>
+      </label>
+      <div className="personal-sidebar__divider">
+        <h5>Direct Messages</h5>
+        <FaPlus />
       </div>
+      <div className="personal-sidebar__scrollbox"></div>
       <div className="personal-sidebar__infobox">
         <div>
           <img src={state.profilePicture} alt="profile picture" />

@@ -10,30 +10,47 @@
   @include dimensions(15rem, 100vh);
   background-color: $discord-gray-300;
 
-  &__scrollbox {
-    @include dimensions(100%, calc(100% - 4rem));
-    @include flex(column, flex-start, flex-start);
-  
-    .friends {
+  &__friends {
+    @include dimensions(100%, 4rem);
+    position: relative;
+    display: block;
+
+    input {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    div {
       @include flex(row, flex-start, center);
-      margin: 0.5rem 1rem 0.5rem 1rem;
-      height: 4rem;
-  
-      div {
+      @include absolute-center;
+      cursor: pointer;
+      
+      svg {
+        margin-left: 0.75rem;
+      }
+
+      h4 {
         margin-left: 0.5rem;
-        font-size: 1.5rem;
       }
     }
+  }
+
+  &__scrollbox {
+    @include dimensions(100%, calc(100% - 10rem));
+    @include flex(column, flex-start, flex-start);
   
-    .direct-messages {
-      @include flex(row, space-between, center);
-      width: 100%;
-      padding-left: 1rem;
-  
-      svg {
-        margin-right: 1rem;
-        font-size: 0.75rem;
-      }
+    
+  }
+
+  &__divider {
+    @include flex(row, space-between, center);
+    @include dimensions(100%, 2rem);
+    padding-left: 1rem;
+
+    svg {
+      margin-right: 1rem;
+      font-size: 0.75rem;
+      cursor: pointer;
     }
   }
   
@@ -62,6 +79,11 @@
   
     svg {
       margin: 1rem;
+      transition: all 2s ease;
+    }
+
+    svg:hover {
+      transform: rotate(360deg);
     }
   }
 }
