@@ -1,20 +1,20 @@
 import Logo from "../assets/images/Logo.png";
 
-import { LoginButton } from "../components/buttons/LoginButton";
-import { SignupButton } from "../components/buttons/SignupButton";
-import { Login } from "../components/modals/Login";
-import { Signup } from "../components/modals/Signup";
+import { open } from "../utilities/modalHandlers";
+
+import { Login } from "../components/AuthForms/Login";
+import { Signup } from "../components/AuthForms/Signup";
 
 function Home() {
   return (
     <div className="home-page">
-      <header className="home-page-header">
+      <header className="home-page__header">
         <img src={Logo} alt="logo" />
         <h1>Discord Clone</h1>
       </header>
-      <div className="home-page-buttons">
-        <LoginButton />
-        <SignupButton />
+      <div className="home-page__buttons">
+        <button onClick={() => open("login")}>Login</button>
+        <button onClick={() => open("signup")}>Signup</button>
       </div>
       <Login />
       <Signup />

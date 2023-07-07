@@ -9,59 +9,61 @@
 .personal-sidebar {
   @include dimensions(15rem, 100vh);
   background-color: $discord-gray-300;
-}
 
-.personal-sidebar-scroll-box {
-  @include dimensions(100%, calc(100% - 4rem));
-  @include flex(column, flex-start, flex-start);
-
-  .personal-sidebar-friends {
-    @include dimensions(auto, 4rem);
-    @include flex(row, flex-start, center);
-    margin: 0.5rem 1rem 0.5rem 1rem;
-
-    div {
-      margin-left: 0.5rem;
-      font-size: 1.5rem;
-    }
-  }
-
-  .personal-sidebar-direct-messages {
-    @include dimensions(100%, auto);
-    @include flex(row, space-between, center);
-    padding-left: 1rem;
-
-    svg {
-      font-size: 0.75rem;
-      margin-right: 1rem;
-    }
-  }
-}
-
-.personal-sidebar-info-box {
-  @include dimensions(100%, 4rem);
-  @include flex(row, space-between, center);
-  margin-top: auto;
-  background-color: darken($discord-gray-300, 2%);
+  &__scrollbox {
+    @include dimensions(100%, calc(100% - 4rem));
+    @include flex(column, flex-start, flex-start);
   
-  div {
-    display: flex;
-
-    img {
-      border-radius: 50%;
-      margin: 1rem;
-      max-width: 2rem;
-      max-height: 2rem;
+    .friends {
+      @include flex(row, flex-start, center);
+      margin: 0.5rem 1rem 0.5rem 1rem;
+      height: 4rem;
+  
+      div {
+        margin-left: 0.5rem;
+        font-size: 1.5rem;
+      }
     }
-
+  
+    .direct-messages {
+      @include flex(row, space-between, center);
+      width: 100%;
+      padding-left: 1rem;
+  
+      svg {
+        margin-right: 1rem;
+        font-size: 0.75rem;
+      }
+    }
+  }
+  
+  &__infobox {
+    @include dimensions(100%, 4rem);
+    @include flex(row, space-between, center);
+    margin-top: auto;
+    background-color: darken($discord-gray-300, 2%);
+    
     div {
       display: flex;
-      align-items: center;
-      font-size: 1.5rem;
+  
+      img {
+        border-radius: 50%;
+        margin: 1rem;
+        max-width: 2rem;
+        max-height: 2rem;
+      }
+  
+      div {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+      }
+    }
+  
+    svg {
+      margin: 1rem;
     }
   }
-
-  svg {
-    margin: 1rem;
-  }
 }
+
+

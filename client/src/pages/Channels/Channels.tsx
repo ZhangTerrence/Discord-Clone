@@ -1,7 +1,8 @@
 import { useEffect } from "react";
-import { useUserContext } from "../hooks/useUserContext";
 import { Outlet } from "react-router-dom";
-import { GuildSidebar } from "../components/sidebars/GuildSidebar";
+import { useUserContext } from "../../hooks/useUserContext";
+
+import { GuildSidebar } from "../../components/Sidebars/Guild";
 
 function Channels() {
   const { dispatch } = useUserContext();

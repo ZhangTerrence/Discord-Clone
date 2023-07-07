@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { PersonalSidebar } from "../components/sidebars/PersonalSidebar";
+import { PersonalSidebar } from "../../../components/Sidebars/Personal";
 
 function Personal() {
   return (

@@ -3,4 +3,5 @@
 
 .friends-page {
   @include dimensions(calc(100vw - 20rem), 100vh);
+  background-color: $discord-gray-200;
 }

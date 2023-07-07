@@ -6,7 +6,7 @@
   @include flex(column, center, center);
   background-color: $discord-gray-200;
 
-  .home-page-header {
+  &__header {
     @include flex(row, flex-start, center);
     margin-bottom: 5rem;
 
@@ -17,8 +17,22 @@
     }
   }
 
-  .home-page-buttons {
-    @include dimensions(30rem, fit-content);
+  &__buttons {
     @include flex(row, space-between, center);
+    width: 30rem;
+
+    button {
+      @include border;
+      background: transparent;
+      padding: 1.75rem;
+      font-size: 1.75rem;
+      line-height: 2rem;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: $discord-gray-400;
+    }
   }
 }

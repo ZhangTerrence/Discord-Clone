@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
-import Channels from "./pages/Channels";
-import Personal from "./pages/Personal";
-import Friends from "./pages/Friends";
-import Guild from "./pages/Guild";
+import Channels from "./pages/Channels/Channels";
+import Personal from "./pages/Channels/Personal/Personal";
+import Friends from "./pages/Channels/Personal/Friends";
+import DirectMessages from "./pages/Channels/Personal/DirectMessages";
+import Guild from "./pages/Channels/Guild/Guild";
 import NotFound from "./pages/NotFound";
-import DirectMessages from "./pages/DirectMessages";
 
 function App() {
   return (
