@@ -1,7 +1,5 @@
 import Logo from "../assets/images/Logo.png";
-
-import { open } from "../utilities/modalHandlers";
-
+import * as modalHandlers from "../utilities/modalHandlers";
 import { Login } from "../components/AuthModals/Login";
 import { Signup } from "../components/AuthModals/Signup";
 
@@ -13,8 +11,8 @@ function Home() {
         <h1>Discord Clone</h1>
       </header>
       <div className="home-page__buttons">
-        <button onClick={() => open("login")}>Login</button>
-        <button onClick={() => open("signup")}>Signup</button>
+        <button onClick={() => modalHandlers.open("login")}>Login</button>
+        <button onClick={() => modalHandlers.open("signup")}>Signup</button>
       </div>
       <Login />
       <Signup />

@@ -1,5 +1,5 @@
+import * as modalHandlers from "../../utilities/modalHandlers";
 import { useNavigate } from "react-router-dom";
-import { open, close } from "../../utilities/modalHandlers";
 import { FaPlus, FaEnvelope, FaLock } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
 
@@ -10,11 +10,11 @@ export const Signup = () => {
     <dialog
       id="signup"
       onClick={(e) => {
-        if ((e.target as HTMLElement).id === "signup") close("signup");
+        if ((e.target as HTMLElement).id === "signup") modalHandlers.close("signup");
       }}
     >
       <form className="signup-modal">
-        <span className="signup-modal__close" onClick={() => close("signup")}>
+        <span className="signup-modal__close" onClick={() => modalHandlers.close("signup")}>
           <FaPlus />
         </span>
         <h2 className="signup-modal__header">Register</h2>
@@ -48,8 +48,8 @@ export const Signup = () => {
             <a
               href="#"
               onClick={() => {
-                close("signup");
-                open("login");
+                modalHandlers.close("signup");
+                modalHandlers.open("login");
               }}
             >
               Login

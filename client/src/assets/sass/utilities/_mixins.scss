@@ -10,8 +10,8 @@
   align-items: $align-items;
 }
 
-@mixin border() {
-  border: 0.25rem solid #FFFFFF;
+@mixin border($color: #FFFFFF) {
+  border: 0.25rem solid $color;
   border-radius: 2rem;
 }
 

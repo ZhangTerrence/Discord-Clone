@@ -1,9 +1,9 @@
-import { useUserContext } from "../../hooks/useUserContext";
 import { FaPlus } from "react-icons/fa";
 import { IoSettings, IoPerson } from "react-icons/io5";
+import { useTypedSelector } from "../../hooks/store";
 
-export const PersonalSidebar = () => {
-  const { state } = useUserContext();
+export const Sidebar = () => {
+  const user = useTypedSelector((state) => state.user);
 
   return (
     <nav className="personal-sidebar">
@@ -21,8 +21,8 @@ export const PersonalSidebar = () => {
       <div className="personal-sidebar__scrollbox"></div>
       <div className="personal-sidebar__infobox">
         <div>
-          <img src={state.profilePicture} alt="profile picture" />
-          <div>{state.username}</div>
+          <img src={user.profilePicture} alt="profile picture" />
+          <div>{user.username}</div>
         </div>
         <IoSettings />
       </div>

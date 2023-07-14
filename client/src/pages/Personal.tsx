@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { PersonalSidebar } from "../../../components/Sidebars/Personal";
+import { Sidebar } from "../components/PersonalSidebar/Sidebar";
 
 function Personal() {
   return (
     <div className="personal-page">
-      <PersonalSidebar />
+      <Sidebar />
       <Outlet />
     </div>
   );

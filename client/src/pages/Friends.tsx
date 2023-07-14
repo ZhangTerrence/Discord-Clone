@@ -24,7 +24,7 @@ function Friends() {
           <div>Pending</div>
         </label>
         <label>
-          <input id="add-friend" type="radio" name="status" />
+          <input id="add-friend" className="friends-page__add-friend" type="radio" name="status" />
           <div>Add Friend</div>
         </label>
       </div>

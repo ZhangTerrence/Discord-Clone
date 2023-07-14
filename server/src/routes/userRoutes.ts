@@ -1,38 +1,25 @@
 import express from "express";
-import { getUsers, getUser, createUser, addFriend, deleteUser, removeFriend, updateUser } from "../controllers/userControllers";
-import { upload } from "../server";
+import parser from "../utilities/cloudinary";
+import * as userControllers from "../controllers/userControllers";
 
-export const userRouter = express.Router();
+export const userRoutes = express.Router();
 
-// GET all users
-userRouter.get("/", getUsers)
+userRoutes.get("/", userControllers.getUsers);
 
-// GET a single user
-userRouter.get("/:id", getUser)
+userRoutes.get("/:id", userControllers.getUser);
 
-// POST a new user
-userRouter.post("/", createUser)
+userRoutes.post("/friends/:id", userControllers.addFriend);
 
-// POST a new friend for an user
-userRouter.post("/friends/:id", addFriend)
+userRoutes.post("/guilds/:id", () => {console.log()})
 
-// POST a new guild for an user
-userRouter.post("/guilds/:id", () => {console.log()})
+userRoutes.post("/directMessages/:id", () => {console.log()})
 
-// POST a new direct message
-userRouter.post("/directMessages/:id", () => {console.log()})
+userRoutes.delete("/:id", userControllers.deleteUser);
 
-// DELETE an user
-userRouter.delete("/:id", deleteUser)
+userRoutes.delete("/friends/:id", userControllers.removeFriend);
 
-// DELETE a friend for an user
-userRouter.delete("/friends/:id", removeFriend)
+userRoutes.delete("/guilds/:id", () => {console.log()})
 
-// DELETE a guild
-userRouter.delete("/guilds/:id", () => {console.log()})
+userRoutes.delete("/messages/:id", () => {console.log()})  
 
-// DELETE a direct message
-userRouter.delete("/messages/:id", () => {console.log()})  
-
-// UPDATE an user 
-userRouter.patch("/:id", upload.single("profilePicture"), updateUser)
+userRoutes.patch("/:id", parser.single("profilePicture"), userControllers.updateUser);

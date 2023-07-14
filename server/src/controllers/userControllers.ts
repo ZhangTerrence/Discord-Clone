@@ -1,152 +1,140 @@
-import mongoose from "mongoose";
 import { Request, Response } from "express";
-import Users from "../models/userModel";
+import mongoose from "mongoose";
+import User from "../models/userModel";
+import expressAsyncHandler from "express-async-handler";
 
-export const getUsers = async (req: Request, res: Response) => {
-  try {
-    const users = await Users.find({}).sort({createdAt: -1});
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(400).json({error: error});
-  }
-}
+// GET /api/users/ - Gets all users
+export const getUsers = expressAsyncHandler(async (req: Request, res: Response) => {
+  const users = await User.find({}).sort({createdAt: -1});
+  res.status(200).json(users);
+})
 
-export const getUser = async (req: Request, res: Response) => {
+// GET /api/users/:id - Get an user
+export const getUser = expressAsyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({error: "Invalid user id."});
+    res.status(400).json({ error: "Invalid user id." });
+    return;
   }
 
-  try {
-    const user = await Users.findById(id);
+  const user = await User.findById({ _id: id });
 
-    if (!user) {
-      res.status(400).json({error: "Cannot find user."});
-    }
-
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({error: error});
-  }
-}
-
-export const createUser = async (req: Request, res: Response) => {
-  const { email, username, biography } = req.body;
-  const profilePicture = `https://cdn.discordapp.com/embed/avatars/${Math.floor(Math.random() * 4)}.png`;
-  try {
-    const user = await Users.create({ email, username, profilePicture, biography });
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({error: error});
-  }
-}
-
-export const addFriend = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const { otherId } = req.body;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({error: "Invalid user id."});
+  if (!user) {
+    res.status(400).json({ error: "No user found." });
+    return;
   }
 
-  if (!mongoose.Types.ObjectId.isValid(otherId)) {
-    res.status(400).json({error: "Invalid other user id."});
+  res.status(200).json(user);
+})
+
+// POST /api/friends/:id - Adds a friend
+export const addFriend = expressAsyncHandler(async (req: Request, res: Response) => {
+  const { id_self } = req.params;
+  const { id_other } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id_self)) {
+    res.status(400).json({ error: "Invalid user id (params)." });
+    return;
+  }
+  if (!mongoose.Types.ObjectId.isValid(id_other)) {
+    res.status(400).json({ error: "Invalid user id (body)." });
+    return;
   }
 
-  try {
-    const user = await Users.findById({_id: id});
-    const otherUser = await Users.findById({_id: otherId});
+  const self = await User.findById({ _id: id_self });
+  const other = await User.findById({ _id: id_other });
 
-    if (!user) {
-      res.status(400).json({error: "Cannot find user."});
-    } else if (!otherUser) {
-      res.status(400).json({error: "Cannot find other user."});
-    } else if (user.friends.includes(otherId)) {
-      res.status(400).json({error: "Other user is already a friend."});
-    } else {
-      await user.friends.push(otherId);
-      await user.save();
-    }
+  if (!self) {
+    res.status(400).json({ error: "Cannot find user (params)." });
+    return;
+  } 
+  if (!other) {
+    res.status(400).json({ error: "Cannot find user (body)." });
+    return;
+  }  
+  if (self.friends.includes(id_other)) {
+    res.status(400).json({ error: "User is already a friend." });
+    return;
+  } 
 
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({error: error});
-  }
-}
+  await self.friends.push(id_other);
+  await self.save();
+  res.status(200).json(self);
+})
 
-export const deleteUser = async (req: Request, res: Response) => {
+// DELETE /api/users/:id - Removes an user
+export const deleteUser = expressAsyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({error: "Invalid user id."});
+    res.status(400).json({ error: "Invalid user id." });
+    return;
   }
 
-  try {
-    const user = await Users.findByIdAndDelete({_id: id});
+  const user = await User.findByIdAndDelete({ _id: id });
 
-    if (!user) {
-      res.status(400).json({error: "Cannot find user."});
-    }
-
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({error: error});
+  if (!user) {
+    res.status(400).json({ error: "Cannot find user." });
+    return;
   }
-}
 
-export const removeFriend = async (req: Request, res: Response) => {
+  res.status(200).json(user);
+})
+
+// DELETE /api/friends/:id - Removes a friend
+export const removeFriend = expressAsyncHandler(async (req: Request, res: Response) => {
+  const { id_self } = req.params;
+  const { id_other } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id_self)) {
+    res.status(400).json({ error: "Invalid user id (params)." });
+    return;
+  }
+  if (!mongoose.Types.ObjectId.isValid(id_other)) {
+    res.status(400).json({ error: "Invalid user id (body)." });
+    return;
+  }
+
+  const self = await User.findById({ _id: id_self });
+  const other = await User.findById({ _id: id_other });
+
+  if (!self) {
+    res.status(400).json({ error: "Cannot find user (params)." });
+    return;
+  } 
+  if (!other) {
+    res.status(400).json({ error: "Cannot find user (body)." });
+    return;
+  }  
+  if (!self.friends.includes(id_other)) {
+    res.status(400).json({ error: "User is not a friend." });
+    return;
+  } 
+
+  await self.friends.splice(self.friends.indexOf(id_other), 1);
+  await self.save();
+  res.status(200).json(self);
+})
+
+// PATCH /api/friends/:id - Updates an user
+export const updateUser = expressAsyncHandler(async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { otherId } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({error: "Invalid user id."});
+    res.status(400).json({ error: "Invalid user id." });
+    return;
   }
 
-  if (!mongoose.Types.ObjectId.isValid(otherId)) {
-    res.status(400).json({error: "Invalid other user id."});
+  const profilePicture = req.file?.path;
+  const user = await User.findByIdAndUpdate({ _id: id }, {
+    ...req.body, profilePicture
+  })
+
+  if (!user) {
+    res.status(400).json({ error: "Cannot find user." });
+    return;
   }
 
-  try {
-    const user = await Users.findById({_id: id});
-    const otherUser = await Users.findById({_id: otherId});
-
-    if (!user) {
-      res.status(400).json({error: "Cannot find user."});
-    } else if (!otherUser) {
-      res.status(400).json({error: "Cannot find other user."});
-    } else if (!user.friends.includes(otherId)) {
-      res.status(400).json({error: "Other user is not a friend."});
-    } else {
-      await user.friends.splice(user.friends.indexOf(otherId), 1);
-      await user.save();
-    }
-
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({error: error});
-  }
-}
-
-export const updateUser = async (req: Request, res: Response) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    res.status(400).json({error: "Invalid user id."});
-  }
-
-  try {
-    const profilePicture = req.file?.path;
-    const user = await Users.findByIdAndUpdate({_id: id}, {
-      ...req.body, profilePicture
-    })
-
-    if (!user) {
-      res.status(400).json({error: "Cannot find user."});
-    }
-
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(400).json({error: error});
-  }
-}
+  res.status(200).json(user);
+})

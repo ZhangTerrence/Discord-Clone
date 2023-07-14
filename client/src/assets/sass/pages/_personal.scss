@@ -13,9 +13,8 @@
   background-color: $discord-gray-200;
 
   &__statuses {
-    @include dimensions(100%, fit-content);
     @include flex(row, flex-start, center);
-    padding: 1rem;
+    margin: 1rem;
 
     input {
       position: absolute;
@@ -23,6 +22,7 @@
     }
 
     input:checked + div {
+      @include border(none);
       background-color: $discord-gray-100;
     }
 
@@ -33,7 +33,10 @@
       font-size: 1.25rem;
       cursor: pointer;
     }
+  }
 
+  &__add-friend:checked + div {
+    background-color: $discord-green !important;
   }
 
   &__search {
